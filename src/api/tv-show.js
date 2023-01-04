@@ -4,7 +4,7 @@ import { BASE_URL, API_KEY_PARAM } from "../config";
 export class TVShowAPI {
   
    // axios
-  /*static async fetchPopulars() {
+  static async fetchPopulars() {
     try {
       const response = await axios.get(`${BASE_URL}tv/popular${API_KEY_PARAM}`);
       console.log(response.data.results);
@@ -12,10 +12,10 @@ export class TVShowAPI {
     } catch (e) {
       console.log(e);
     }
-  }*/
+  }
 
   // fetch
-  static async fetchPopulars() {
+  /*static async fetchPopulars() {
     try {
       const response = await fetch(`${BASE_URL}tv/popular${API_KEY_PARAM}`, {
         method: "GET",
@@ -27,5 +27,5 @@ export class TVShowAPI {
     } catch (e) {
       console.log(e);
     }
-  }
+  }*/
 }
