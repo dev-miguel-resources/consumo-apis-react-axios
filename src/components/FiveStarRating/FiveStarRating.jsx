@@ -9,7 +9,6 @@ const FiveStarRating = ({ rating }) => {
 
   // Store if yes or no there is a half star
   const hasHalfStar = rating - parseInt(rating) >= 0.5;
-  console.log(hasHalfStar);
 
   // Store number of empty stars
   const emptyStarCount = 5 - starFillCount - (hasHalfStar ? 1 : 0);
