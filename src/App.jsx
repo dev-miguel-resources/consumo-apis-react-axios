@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import Logo from "./components/Logo/Logo";
+import SearchBar from "./components/SearchBar/SearchBar";
 import TVShowDetail from "./components/TVShowDetail/TvShowDetail";
 import { TVShowAPI } from "./api/tv-show";
 import { BACKDROP_BASE_URL } from "./config";
@@ -37,7 +38,6 @@ function App() {
           <div className="col-4">
             <Logo
               title="WatchShows"
-              subtitle="Find a show you may like"
               image={logoImg}
             />
           </div>
