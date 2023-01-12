@@ -17,6 +17,13 @@ function App() {
     }
   }
 
+  async function fetchByTitle(title) {
+    const searchResponse = await TVShowAPI.fetchByTitle(title);
+    if (searchResponse.length > 0) {
+      setCurrentTVShow(searchResponse[0]);
+    }
+  }
+
   useEffect(() => {
     fetchPopulars();
   }, []);
@@ -42,7 +49,7 @@ function App() {
             />
           </div>
           <div className="col-md-12 col-lg-4">
-            <input style={{ width: "100%" }} type="text" />
+            <SearchBar onSubmit={fetchByTitle} />
           </div>
         </div>
       </div>
