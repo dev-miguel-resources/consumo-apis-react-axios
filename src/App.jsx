@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import Logo from "./components/Logo/Logo";
 import SearchBar from "./components/SearchBar/SearchBar";
 import TVShowDetail from "./components/TVShowDetail/TvShowDetail";
+import TVShowList from "./components/TVShowList/TVShowList";
 import { TVShowAPI } from "./api/tv-show";
 import { BACKDROP_BASE_URL } from "./config";
 import logoImg from "./assets/images/logo.png";
@@ -9,6 +10,7 @@ import s from "./style.module.css";
 
 function App() {
   const [currentTVShow, setCurrentTVShow] = useState();
+  const [recommendationList, setRecommendationList] = useState([]);
 
   async function fetchPopulars() {
     const popularTVShowList = await TVShowAPI.fetchPopulars();
@@ -24,9 +26,28 @@ function App() {
     }
   }
 
+  async function fetchRecommendations(tvShowId) {
+    const recommendationListResp = await TVShowAPI.fetchRecommendations(
+      tvShowId
+    );
+    if (recommendationListResp.length > 0) {
+      setRecommendationList(recommendationListResp.slice(0, 10));
+    }
+  }
+
+  function updateCurrentTVShow(tvShow) {
+    setCurrentTVShow(tvShow);
+  }
+
   useEffect(() => {
     fetchPopulars();
   }, []);
+
+  useEffect(() => {
+    if (currentTVShow) {
+      fetchRecommendations(currentTVShow.id);
+    }
+  }, [currentTVShow]);
 
   console.log(currentTVShow);
 
@@ -43,10 +64,7 @@ function App() {
       <div className={s.header}>
         <div className="row">
           <div className="col-4">
-            <Logo
-              title="WatchShows"
-              image={logoImg}
-            />
+            <Logo title="WatchShows" image={logoImg} />
           </div>
           <div className="col-md-12 col-lg-4">
             <SearchBar onSubmit={fetchByTitle} />
@@ -56,7 +74,14 @@ function App() {
       <div className={s.tv_show_details}>
         {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
       </div>
-      <div className={s.recommended_shows}>Recommended tv shows</div>
+      <div className={s.recommended_shows}>
+        {currentTVShow && (
+          <TVShowList
+            onClickItem={updateCurrentTVShow}
+            tvShowList={recommendationList}
+          />
+        )}
+      </div>
     </div>
   );
 }
