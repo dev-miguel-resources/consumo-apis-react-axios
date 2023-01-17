@@ -1,6 +1,5 @@
+//import { LogoContainer, LogoImg, LogoTitle } from "./StyledLogo";
 import s from "./style.module.css";
-
-// clean code: 4 arguments like maxium on other case with props
 
 const Logo = ({ image, title }) => (
   <div>
@@ -10,5 +9,15 @@ const Logo = ({ image, title }) => (
     </div>
   </div>
 );
+
+// STYLED COMPONENTS
+/*const Logo = ({ image, title }) => (
+  <div>
+    <LogoContainer>
+      <LogoImg src={image} alt="logo" />
+      <LogoTitle>{title}</LogoTitle>
+    </LogoContainer>
+  </div>
+);*/
 
 export default Logo;
