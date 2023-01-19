@@ -4,6 +4,7 @@ import s from "./style.module.css";
 const MAX_TITLE_CHAR = 20;
 
 const TVShowListItem = ({ tvShow, onClick }) => {
+
   const onClick_ = () => {
     onClick(tvShow);
   };

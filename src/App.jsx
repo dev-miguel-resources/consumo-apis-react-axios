@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Logo from "./components/Logo/Logo";
 import SearchBar from "./components/SearchBar/SearchBar";
 import TVShowDetail from "./components/TVShowDetail/TvShowDetail";
@@ -12,12 +12,31 @@ function App() {
   const [currentTVShow, setCurrentTVShow] = useState();
   const [recommendationList, setRecommendationList] = useState([]);
 
+  // Version normal
   async function fetchPopulars() {
     const popularTVShowList = await TVShowAPI.fetchPopulars();
     if (popularTVShowList && popularTVShowList.length > 0) {
       setCurrentTVShow(popularTVShowList[0]);
     }
   }
+
+  // Version with useCallback function
+  /*const fetchPopulars = useCallback(async () => {
+    const popularTVShowList = await TVShowAPI.fetchPopulars();
+    if (popularTVShowList.length > 0) {
+      setCurrentTVShow(popularTVShowList[0]);
+    }
+  }, [currentTVShow]);*/
+
+  // Version with useMemo function
+  /*const fetchPopulars = useMemo(() => {
+    return async () => {
+      const popularTVShowList = await TVShowAPI.fetchPopulars();
+      if (popularTVShowList.length > 0) {
+        setCurrentTVShow(popularTVShowList[0]);
+      }
+    }
+  }, [currentTVShow]);*/
 
   async function fetchByTitle(title) {
     const searchResponse = await TVShowAPI.fetchByTitle(title);
@@ -87,3 +106,12 @@ function App() {
 }
 
 export default App;
+
+/*const fetchPopulars = useMemo(() => {
+    return async () => {
+      const popularTVShowList = await TVShowAPI.fetchPopulars();
+      if (popularTVShowList.length > 0) {
+        setCurrentTVShow(popularTVShowList[0]);
+      }
+    };
+  }, [currentTVShow]);*/
