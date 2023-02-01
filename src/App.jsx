@@ -12,7 +12,7 @@ function App() {
   const [currentTVShow, setCurrentTVShow] = useState();
   const [recommendationList, setRecommendationList] = useState([]);
 
-  // Version normal
+  // Normal Version
   async function fetchPopulars() {
     const popularTVShowList = await TVShowAPI.fetchPopulars();
     if (popularTVShowList && popularTVShowList.length > 0) {
@@ -107,11 +107,3 @@ function App() {
 
 export default App;
 
-/*const fetchPopulars = useMemo(() => {
-    return async () => {
-      const popularTVShowList = await TVShowAPI.fetchPopulars();
-      if (popularTVShowList.length > 0) {
-        setCurrentTVShow(popularTVShowList[0]);
-      }
-    };
-  }, [currentTVShow]);*/
