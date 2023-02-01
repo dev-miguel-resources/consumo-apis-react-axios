@@ -11,30 +11,30 @@ export default defineConfig({
     port: 4270,
   },
   build: {
-    // Ajuste la configuración de compilación para compilar solo los archivos cambiados para acelerar el proceso de compilación.
+    // Acelerar el proceso de compilación de los archivos cuando generas el build
     incremental: true,
-    // Habilite la aceleración de compilación de JavaScript con Babel para mejorar el rendimiento.
+    // Habilitar un trabajo en conjunto con Babel para la interpretación correcta de las versiones del JS para los navegadores
     babel: {
       presets: ["@babel/preset-env", "@babel/preset-react"],
     },
-    // Habilite la aceleración de compilación de TypeScript con TypeScript Compiler para mejorar el rendimiento.
+    // Habilitar la aceleración de compilación del TS hacia JS
     /*typescript: {
-      tsconfig: './tsconfig.json',
+      tsconfig: "./tsconfig.json",
     },*/
-    // Habilite el almacenamiento en caché para reducir la cantidad de tiempo necesario para compilar y servir.
+    // Habilitar los cambios mediante caché
     cache: true,
-    // Utilice la opción de compresión para minimizar el tamaño de los archivos compilados.
+    // Habilitar la opción de compresión para minimizar el tamaño de los archivos compilados.
     minify: true,
-    // Utilice la opción de código de desarrollador para reducir el tamaño del código compilado y mejorar el rendimiento.
-    devCode: true,
-    // Utilice la opción de desarrollo para activar un modo de depuración más rápido.
-    debug: true,
-     // Habilite el modo de producción para obtener la compilación más rápida y el menor tiempo de carga para el usuario.
+    // Especificar el ambiente en el cual estamos manejando este contexto de ejecución
     mode: "production",
-    // Utilice la configuración de chunks para mejorar el rendimiento de la aplicación al dividir el código en partes más pequeñas.
+    // Habilitar la configuración del build mediante chuncks parcelados
     chunks: true,
-    // Habilite el empaquetado de módulos para reducir el tamaño del código y mejorar el rendimiento.
+    // Habilitar la configuración para minimizar el tamaño de las librerías del proyecto que pasarán a producción
     moduleBundling: true,
+    // Habilitar un partner del modo debug para habilitar más recomendaciones
+    devCode: true,
+    // Habilitar un modo debug para las ejecuciones de la generación del build
+    debug: true,
   },
 });
 

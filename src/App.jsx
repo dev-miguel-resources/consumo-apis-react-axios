@@ -68,8 +68,6 @@ function App() {
     }
   }, [currentTVShow]);
 
-  console.log(currentTVShow);
-
   return (
     <div
       className={s.main_container}
